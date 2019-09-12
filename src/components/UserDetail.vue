@@ -10,6 +10,7 @@
 </template>
 
 <script>
+    import {eventBus} from "@/main";
     //props dùng để truyền dữ liệu từ component cha sang các component con,
     //và các con truyền thông báo đến component cha thông qua các sự kiện
     export default {
@@ -26,6 +27,11 @@
                 this.customName = 'Khuynh Thanh';
                 this.$emit('nameWasReset', this.customName);
             }
+        },
+        created() {
+            eventBus.$on('ageWasEdit', (age) => {
+                this.userAge = age;
+            })
         }
     }
 </script>
